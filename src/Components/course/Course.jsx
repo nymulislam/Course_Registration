@@ -1,32 +1,77 @@
 /* eslint-disable react/jsx-key */
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { useEffect, useState } from "react";
 import Cart from "../cart/Cart";
-Cart
+Cart;
 
 /* eslint-disable react/no-unknown-property */
 const Courses = () => {
   const [courses, setCourses] = useState([]);
-  const [selectedCourse, setSelectedCourse] = useState([])
-
+  const [selectedCourse, setSelectedCourse] = useState([]);
+  const maxCreditHrs = 20;
+  const [sumPrice, setSumPrice] = useState(0);
+  const [sumCreditHrs, setSumCreditHrs] = useState(0)
   
   useEffect(() => {
     fetch("./course.json")
-    .then((res) => res.json())
-    .then((data) => setCourses(data));
-  }, []);
-  
-  const handleSelectCourse = (course) => {
-    setSelectedCourse([...selectedCourse, course]);
-  }
+      .then((res) => res.json())
+      .then((data) => setCourses(data));
+    }, []);
+    
+    const handleSelectCourse = (course) => {
+      const isAdded = selectedCourse.find(
+        (addCourse) => addCourse.id === course.id
+        );
+        
+    if (isAdded) {
+      return toast.error("Course is already added!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
+    } else if (course.hours + sumCreditHrs <= maxCreditHrs) {
+      setSelectedCourse([...selectedCourse, course]);
+      setSumCreditHrs(sumCreditHrs + course.hours);
+      setSumPrice(sumPrice + parseFloat(course.price.slice(1)));
+    } else if (course.hours + sumCreditHrs > maxCreditHrs) {
+      toast.error("Cannot add course. Exceeds maximum credit hours!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } else {
+      toast.error("Cannot add course. Below 0 credit hours!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+  };
 
   return (
     <>
       <div className="md:flex gap-5 ">
         {/* course course section */}
         <div className="md:w-4/5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {
-                courses.map(course => (
-                    <div className="course w-full bg-base-100 shadow-xl p-4">
+          {courses.map((course) => (
+            <div className="course w-full bg-base-100 shadow-xl p-4">
               <img
                 src={course.image}
                 alt="course image"
@@ -35,8 +80,7 @@ const Courses = () => {
               <h2 className="text-left text-xl font-semibold mb-3">
                 {course.title}
               </h2>
-              <p className="text-left mb-3">{course.description}
-              </p>
+              <p className="text-left mb-3">{course.description}</p>
               <div className="flex justify-between mb-3 px-1">
                 <div className="flex gap-1">
                   <svg
@@ -82,17 +126,24 @@ const Courses = () => {
                   <h4>Credit: {course.hours}hr</h4>
                 </div>
               </div>
-              <button onClick={() => handleSelectCourse(course)} className="btn btn-warning px-20 bg-sky-600 text-white normal-case text-xl hover:bg-sky-500">
+              <button
+                onClick={() => handleSelectCourse(course)}
+                className="btn btn-warning px-20 bg-sky-600 text-white normal-case text-xl hover:bg-sky-500"
+              >
+                <ToastContainer
+                />
                 Select
               </button>
             </div>
-                ))
-            }
+          ))}
         </div>
 
         {/* course cart section */}
         <div className="w-full md:w-fit md:h-fit bg-base-100 shadow-xl mt-12 md:mt-5">
-          <Cart selectedCourse={selectedCourse}></Cart>
+          <Cart selectedCourse={selectedCourse}
+  sumCreditHrs={sumCreditHrs}
+  remainingHrs={maxCreditHrs - sumCreditHrs}
+  sumPrice={sumPrice}></Cart>
         </div>
       </div>
     </>

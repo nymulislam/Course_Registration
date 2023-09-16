@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
-const Cart = ({selectedCourse}) => {
-    console.log(selectedCourse);
+const Cart = ({selectedCourse, sumCreditHrs, sumPrice, remainingHrs}) => {
     return (
         <div>
             <div className="p-3 flex flex-col gap-3">
             <h4 className="text-sky-700 font-semibold">
-              Credit Remaining 20hr
+              Remaining Credit {remainingHrs}hr
             </h4>
             <hr />
             <h2 className="card-title">Course Name</h2>
@@ -17,9 +16,9 @@ const Cart = ({selectedCourse}) => {
             }
             </ul>
             <hr />
-            <p className="text-left">Total Credit Hour: 0</p>
+            <p className="text-left">Total Credit Hour: {sumCreditHrs}</p>
             <hr />
-            <h5 className="text-left">Total Price: 100 USD</h5>
+            <h5 className="text-left">Total Price: {sumPrice.toFixed(2)} USD</h5>
           </div>
         </div>
     );
