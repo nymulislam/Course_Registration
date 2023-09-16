@@ -1,0 +1,74 @@
+[
+  {
+    "id": "course1",
+    "image": "https://i.ibb.co/hZd5YdM/img1.png",
+    "title": "Intro to C Programming",
+    "description": "Comprehensive C language intro with variables, data types, and programming basics. Perfect for beginners!",
+    "price": "$49.99",
+    "hours": 5
+  },
+  {
+    "id": "course2",
+    "image": "https://i.ibb.co/PDKbYdP/img2.png",
+    "title": "Introduction to Algorithms",
+    "description": "Explore the fascinating world of algorithms in this introductory course. Learn the basics of algorithm design and analysis.",
+    "price": "$59.99",
+    "hours": 6
+  },
+  {
+    "id": "course3",
+    "image": "https://i.ibb.co/X89wnMS/img3.png",
+    "title": "Introduction to C++ for DSA",
+    "description": "Start with C++ for Data Structures & Algorithms (DSA). Master fundamentals of this powerful language.",
+    "price": "$69.99",
+    "hours": 7
+  },
+  {
+    "id": "course4",
+    "image": "https://i.ibb.co/KGrPkhB/img4.png",
+    "title": "Basic Data Structures",
+    "description": "Foundational data structures and algorithms. Build a robust programming foundation.",
+    "price": "$79.99",
+    "hours": 8
+  },
+  {
+    "id": "course5",
+    "image": "https://i.ibb.co/rfcNxjZ/img5.png",
+    "title": "Introduction to OOP Python",
+    "description": "Discover Python OOP, create modern web apps, front-end, and back-end development skills.",
+    "price": "$89.99",
+    "hours": 9
+  },
+  {
+    "id": "course6",
+    "image": "https://i.ibb.co/y8h2rt7/img6.png",
+    "title": "Software Engineering",
+    "description": "Dive into Software Engineering, data analysis, machine learning, and data visualization with Python.",
+    "price": "$99.99",
+    "hours": 10
+  },
+  {
+    "id": "course7",
+    "image": "https://i.ibb.co/p4NGZjQ/img7.png",
+    "title": "AWS, Cloud Computing",
+    "description": "Explore AWS cloud computing, construct scalable and dependable cloud applications while delving into its intricacies.",
+    "price": "$79.99",
+    "hours": 8
+  },
+  {
+    "id": "course8",
+    "image": "https://i.ibb.co/2qJTrh6/img8.png.jpg",
+    "title": "Database (MySQL)",
+    "description": "Expertise in MySQL: Learn database design, efficient SQL query writing, and effective data management and retrieval.",
+    "price": "$59.99",
+    "hours": 6
+  },
+  {
+    "id": "course9",
+    "image": "https://i.ibb.co/qyQdkKN/img9.png",
+    "title": "Problem-Solving Part",
+    "description": "Enhance problem-solving skills, understand cybersecurity basics, threat detection, encryption, and network security.",
+    "price": "$69.99",
+    "hours": 7
+  }
+]
